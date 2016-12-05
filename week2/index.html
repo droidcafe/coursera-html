@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Color guessing game</title>
+  </head>
+  <body onload="do_game();">
+
+    <script type="text/javascript">
+      var color = ['red','green','blue','indigo','purple','yellow','white','black'];
+      var random = Math.floor ((Math.random() * color.length));
+      var selected = color[random];
+      function do_game(){
+        console.log('inside function');
+
+        alert('The selected color is '+color[random]);
+        no_attempts = 0;
+        var is_sucess = false;
+        while(!is_sucess){
+          var user_input = prompt('I am thinking of one of these colors \n\n '+color.sort() +
+           '\n\n What color am I thinking of?');
+          no_attempts ++;
+         is_sucess = check_guess(user_input);
+        }
+      }
+
+      function check_guess(user_input){
+        var index = color.indexOf(user_input);
+        var is_sucess = false;
+        if(index == -1){
+          alert("Sorry I don't recognize the color \n\n Please try again");
+        }else if(selected == user_input){
+          is_sucess = true;
+          console.log('before 1');
+          var body = document.getElementsByTagName('body')[0];
+          body.style.background = selected;
+          console.log('before 2');
+          alert('Congratulations! \n\n You have guessed the color! \n It took you '+no_attempts +
+          ' attempts to finish the game! \n\n You can see the color in the background.');
+          console.log('after 1');
+        }else if(selected < user_input){
+          var hint = 'your color is alphabetically higher than mine';
+          alert('Sorry, your guess is not correct! \n\n Hint: '+hint+'\n\n Please try again');
+        }else{
+            hint = 'your color is alphabetically lower than mine';
+            alert('Sorry, your guess is not correct! \n\n Hint: '+hint+'\n\n Please try again');
+        }
+        console.log(index);
+        return is_sucess;
+      }
+    </script>
+    <script src="http://localhost:35729/livereload.js"></script>
+  </body>
+</html>

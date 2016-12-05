@@ -1,0 +1,25 @@
+<html>
+  <head>
+  </head>
+  <body onload="do_game();">
+
+    <script type="text/javascript">
+      var color = ['red','green','blue','indigo','purple','yellow','white','black'];
+      var random = Math.floor ((Math.random() * color.length));
+      var selected = color[random];
+      function do_game(){
+        console.log('inside function');
+        alert('The selected color is '+color[random]);
+        no_attempts = 0;
+        var is_sucess = false;
+        while(!is_sucess){
+          var user_input = prompt('I am thinking of one of these colors \n\n '+color.sort() +
+           '\n\n What color am I thinking of?');
+          no_attempts ++;
+          if(user_input == selected)
+           is_sucess = true;
+        }
+      }
+      </script>
+  </body>
+</html>
